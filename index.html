@@ -4,19 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO -->
+  <!-- PRIMARY SEO -->
   <title>Simple Calculator Online – Free, Fast & Accurate Math Tool</title>
-  <meta name="description" content="Simple Calculator Online is a free and easy-to-use math calculator for addition, subtraction, multiplication, division, square root and trigonometric calculations.">
-  <meta name="keywords" content="simple calculator online, free calculator, math calculator, scientific calculator, online math tool">
+  <meta name="description" content="Use Simple Calculator Online for fast and accurate math calculations. Perform addition, subtraction, multiplication, division, square root and trigonometric functions instantly for free.">
+  <meta name="keywords" content="simple calculator online, free calculator, online math calculator, scientific calculator, basic calculator">
   <meta name="author" content="AAJHub Tools">
   <meta name="robots" content="index, follow">
   <link rel="canonical" href="https://simple-calculator-2026.vercel.app/" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Simple Calculator Online – Free Math Tool">
-  <meta property="og:description" content="Perform fast and accurate math calculations online using our free calculator.">
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="Simple Calculator Online – Free Math Calculator">
+  <meta property="og:description" content="A fast, free and easy-to-use online calculator for everyday and scientific math calculations.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://simple-calculator-2026.vercel.app/">
+
+  <!-- TWITTER -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Simple Calculator Online">
+  <meta name="twitter:description" content="Free online calculator for instant math calculations.">
+
+  <!-- SCHEMA: WebApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Simple Calculator Online",
+    "url": "https://simple-calculator-2026.vercel.app/",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "All",
+    "description": "A free online calculator for basic and scientific math calculations.",
+    "author": {
+      "@type": "Organization",
+      "name": "AAJHub Tools"
+    }
+  }
+  </script>
+
+  <!-- SCHEMA: FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [{
+      "@type": "Question",
+      "name": "Is Simple Calculator Online free to use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Simple Calculator Online is completely free and does not require registration."
+      }
+    },{
+      "@type": "Question",
+      "name": "Does this calculator work on mobile devices?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, the calculator is fully responsive and works on mobile, tablet, and desktop devices."
+      }
+    },{
+      "@type": "Question",
+      "name": "Can I use scientific functions?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can calculate sine, cosine, tangent, and square root values easily."
+      }
+    }]
+  }
+  </script>
 
   <style>
     :root {
@@ -121,36 +173,29 @@
       border: none;
     }
 
-    section {
+    main section {
       max-width: 960px;
       margin: auto;
       padding: 3rem 1.5rem;
     }
 
-    section h2 {
+    main h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
     }
 
-    section p, section li {
+    main p, main li {
       color: var(--muted);
       margin-bottom: 0.75rem;
     }
 
-    ul {
-      padding-left: 1.2rem;
-    }
+    ul { padding-left: 1.2rem; }
 
     footer {
       text-align: center;
       padding: 2rem;
       border-top: 1px solid var(--border);
       color: var(--muted);
-    }
-
-    @media (max-width: 420px) {
-      .calculator { width: 95vw; }
-      header h1 { font-size: 2rem; }
     }
   </style>
 </head>
@@ -160,8 +205,7 @@
 <header>
   <h1>Simple Calculator Online</h1>
   <p>
-    A fast, free and easy-to-use online calculator to perform everyday math
-    calculations including basic and scientific operations directly in your browser.
+    A fast, free and accurate online calculator for everyday math and scientific calculations.
   </p>
 </header>
 
@@ -171,7 +215,6 @@
       <div id="previous-val"></div>
       <div id="current-val">0</div>
     </div>
-
     <div class="grid">
       <button class="btn-ac" onclick="clearDisplay()">AC</button>
       <button class="btn-op" onclick="deleteLast()">DEL</button>
@@ -204,45 +247,34 @@
   </div>
 </div>
 
-<section>
-  <h2>About Our Calculator</h2>
-  <p>
-    Simple Calculator Online is designed to help students, professionals, and
-    everyday users solve math problems quickly without installing any software.
-    It runs directly in your browser and works on all devices.
-  </p>
-</section>
+<main>
+  <section>
+    <h2>About This Calculator</h2>
+    <p>
+      Simple Calculator Online helps students, professionals, and everyday users
+      perform accurate calculations instantly without installing any app.
+    </p>
+  </section>
 
-<section>
-  <h2>How to Use the Calculator</h2>
-  <ul>
-    <li>Enter numbers using the number buttons.</li>
-    <li>Select arithmetic operators like +, −, ×, or ÷.</li>
-    <li>Use scientific functions such as sin, cos, tan, and square root.</li>
-    <li>Press the equals (=) button to calculate the result.</li>
-    <li>Use AC to clear everything or DEL to remove the last entry.</li>
-  </ul>
-</section>
+  <section>
+    <h2>How to Use</h2>
+    <ul>
+      <li>Enter numbers using the keypad</li>
+      <li>Select arithmetic or scientific operations</li>
+      <li>Press equals to calculate instantly</li>
+    </ul>
+  </section>
 
-<section>
-  <h2>Why Our Tool Is the Best</h2>
-  <ul>
-    <li>100% free with no registration required</li>
-    <li>Instant and accurate calculations</li>
-    <li>Modern, distraction-free interface</li>
-    <li>Works on mobile, tablet, and desktop</li>
-    <li>No ads, no tracking, no data collection</li>
-  </ul>
-</section>
-
-<section>
-  <h2>Get Started Now</h2>
-  <p>
-    Simply scroll up and start calculating instantly. Whether you need quick
-    arithmetic or basic scientific calculations, Simple Calculator Online is
-    built to save your time and improve productivity.
-  </p>
-</section>
+  <section>
+    <h2>Why Choose This Tool?</h2>
+    <ul>
+      <li>100% free and browser-based</li>
+      <li>Fast, accurate and responsive</li>
+      <li>No ads or data tracking</li>
+      <li>Works on all devices</li>
+    </ul>
+  </section>
+</main>
 
 <footer>
   © 2026 AAJHub Tools · Simple Calculator Online
@@ -251,7 +283,6 @@
 <script>
   let currentInput = '';
   let displayInput = '';
-
   const currentVal = document.getElementById('current-val');
   const prevVal = document.getElementById('previous-val');
 
