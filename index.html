@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Glassmorphism Calculator | Naveen</title>
+    <meta name="description" content="A simple yet advanced calculator with a beautiful glassmorphism design. Responsive and precision-engineered.">
+    <style>
+        :root {
+            --bg: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent: #8b5cf6;
+            --accent-glow: rgba(139, 92, 246, 0.3);
+            --text: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--bg);
+            background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .calculator {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 2rem;
+            width: 380px;
+            padding: 2rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .display {
+            margin-bottom: 2rem;
+            text-align: right;
+            padding: 1rem;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        #previous-val {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 0.5rem;
+            overflow-x: auto;
+        }
+
+        #current-val {
+            font-size: 3rem;
+            font-weight: 600;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        button {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            color: white;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .btn-sci {
+            font-size: 0.9rem;
+            color: #a78bfa;
+            font-weight: 500;
+        }
+
+        .btn-op {
+            color: #22d3ee;
+        }
+
+        .btn-eq {
+            background: linear-gradient(135deg, #8b5cf6, #ec4899);
+            border: none;
+            grid-column: span 1;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-ac {
+            color: #f87171;
+            grid-column: span 2;
+        }
+
+        /* Abstract Glows */
+        .blob {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            filter: blur(100px);
+            opacity: 0.2;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        .blob-1 { top: -100px; left: -100px; }
+        .blob-2 { bottom: -100px; right: -100px; background: #3b82f6; }
+
+        @media (max-width: 400px) {
+            .calculator {
+                width: 95vw;
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <div class="container">
+        <div class="calculator">
+            <div class="display">
+                <div id="previous-val"></div>
+                <div id="current-val">0</div>
+            </div>
+            <div class="grid">
+                <button class="btn-ac" onclick="clearDisplay()">AC</button>
+                <button class="btn-op" onclick="deleteLast()">DEL</button>
+                <button class="btn-op" onclick="appendOperator('/')">÷</button>
+                
+                <button class="btn-sci" onclick="appendFunc('Math.sin')">sin</button>
+                <button class="btn-sci" onclick="appendFunc('Math.cos')">cos</button>
+                <button class="btn-sci" onclick="appendFunc('Math.tan')">tan</button>
+                <button class="btn-op" onclick="appendOperator('*')">×</button>
+
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button class="btn-op" onclick="appendOperator('-')">-</button>
+
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button class="btn-op" onclick="appendOperator('+')">+</button>
+
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button class="btn-eq" onclick="calculate()">=</button>
+
+                <button style="grid-column: span 2" onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button class="btn-sci" onclick="appendFunc('Math.sqrt')">√</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentInput = '';
+        let displayInput = '';
+        const currentValElem = document.getElementById('current-val');
+        const prevValElem = document.getElementById('previous-val');
+
+        function updateDisplay() {
+            currentValElem.innerText = displayInput || '0';
+        }
+
+        function appendNumber(num) {
+            if (num === '.' && displayInput.includes('.')) return;
+            displayInput += num;
+            currentInput += num;
+            updateDisplay();
+        }
+
+        function appendOperator(op) {
+            if (displayInput === '') return;
+            const visualOp = op === '*' ? '×' : op === '/' ? '÷' : op;
+            displayInput += ' ' + visualOp + ' ';
+            currentInput += op;
+            updateDisplay();
+        }
+
+        function appendFunc(func) {
+            displayInput += func.replace('Math.', '') + '(';
+            currentInput += func + '(';
+            updateDisplay();
+        }
+
+        function clearDisplay() {
+            currentInput = '';
+            displayInput = '';
+            prevValElem.innerText = '';
+            updateDisplay();
+        }
+
+        function deleteLast() {
+            displayInput = displayInput.slice(0, -1);
+            currentInput = currentInput.slice(0, -1);
+            updateDisplay();
+        }
+
+        function calculate() {
+            try {
+                // Auto-close parentheses
+                let openParens = (currentInput.match(/\(/g) || []).length;
+                let closeParens = (currentInput.match(/\)/g) || []).length;
+                while (openParens > closeParens) {
+                    currentInput += ')';
+                    displayInput += ')';
+                    closeParens++;
+                }
+
+                const result = eval(currentInput);
+                prevValElem.innerText = displayInput + ' =';
+                displayInput = result.toString();
+                currentInput = result.toString();
+                updateDisplay();
+            } catch (e) {
+                currentValElem.innerText = 'Error';
+                setTimeout(clearDisplay, 1500);
+            }
+        }
+    </script>
+</body>
+</html>
