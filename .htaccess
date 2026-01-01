@@ -1,8 +1,21 @@
+# Enable Rewrite Engine
 <IfModule mod_rewrite.c>
   RewriteEngine On
   RewriteBase /
-  RewriteRule ^index\.html$ - [L]
+
+  # Allow sitemap.xml and robots.txt to be accessed directly
+  RewriteCond %{REQUEST_URI} ^/(sitemap\.xml|robots\.txt)$ [NC]
+  RewriteRule ^ - [L]
+
+  # Do not rewrite existing files or directories
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule . /index.html [L]
+
+  # Redirect all other requests to index.html
+  RewriteRule ^ index.html [L]
 </IfModule>
+
+# Optional: Set MIME types for XML
+<FilesMatch "\.(xml)$">
+  ForceType application/xml
+</FilesMatch>
