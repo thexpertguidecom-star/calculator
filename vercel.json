@@ -1,26 +1,8 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "routes": [
-    {
-      "src": "/sitemap\\.xml",
-      "headers": {
-        "Content-Type": "application/xml; charset=utf-8"
-      },
-      "dest": "/sitemap.xml"
-    },
-    {
-      "src": "/robots\\.txt",
-      "headers": {
-        "Content-Type": "text/plain; charset=utf-8"
-      },
-      "dest": "/robots.txt"
-    }
-  ],
   "rewrites": [
-    {
-      "source": "/((?!sitemap\\.xml|robots\\.txt).*)",
-      "destination": "/index.html"
+    { 
+      "source": "/:path((?!sitemap\\.xml|robots\\.txt).*)",
+      "destination": "/index.html" 
     }
   ]
 }
