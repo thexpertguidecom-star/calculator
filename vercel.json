@@ -1,36 +1,26 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
   "routes": [
     {
-      "src": "/sitemap.xml",
+      "src": "/sitemap\\.xml",
+      "headers": {
+        "Content-Type": "application/xml; charset=utf-8"
+      },
       "dest": "/sitemap.xml"
     },
     {
-      "src": "/robots.txt",
+      "src": "/robots\\.txt",
+      "headers": {
+        "Content-Type": "text/plain; charset=utf-8"
+      },
       "dest": "/robots.txt"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
     }
   ],
-  "headers": [
+  "rewrites": [
     {
-      "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/xml"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/plain"
-        }
-      ]
+      "source": "/((?!sitemap\\.xml|robots\\.txt).*)",
+      "destination": "/index.html"
     }
   ]
 }
