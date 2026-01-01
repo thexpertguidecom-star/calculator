@@ -1,266 +1,262 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Calculator Online – Fast & Free Math Calculator</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="Use this simple online calculator to perform addition, subtraction, multiplication, and division instantly. Free, fast, and easy to use.">
+  <!-- ===== PRIMARY SEO ===== -->
+  <title>Simple Calculator Online – Free, Fast & Accurate Math Tool</title>
+  <meta name="description" content="Use this simple calculator online to perform fast and accurate math calculations including addition, subtraction, multiplication, division, square root and trigonometry. Free and easy to use.">
+  <meta name="keywords" content="simple calculator online, free calculator, math calculator, basic calculator, scientific calculator, online math tool">
+  <meta name="author" content="AAJHub Tools">
+  <meta name="robots" content="index, follow">
 
-<meta name="keywords" content="simple calculator, online calculator, math calculator, free calculator, basic calculator">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://simple-calculator-2026.vercel.app/">
 
-<meta name="author" content="AAJHub Tools">
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:title" content="Simple Calculator Online – Free Math Tool">
+  <meta property="og:description" content="A free online calculator for fast and accurate math calculations including basic and scientific operations.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://simple-calculator-2026.vercel.app/">
+  <meta property="og:image" content="https://simple-calculator-2026.vercel.app/preview.png">
 
-<meta name="robots" content="index, follow">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        :root {
-            --bg: #0f172a;
-            --glass: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #8b5cf6;
-            --accent-glow: rgba(139, 92, 246, 0.3);
-            --text: #f8fafc;
-        }
+  <!-- ===== Twitter Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Simple Calculator Online – Free & Fast Math Tool">
+  <meta name="twitter:description" content="Perform instant math calculations online with this free and easy-to-use calculator.">
+  <meta name="twitter:image" content="https://simple-calculator-2026.vercel.app/preview.png">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-        }
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
 
-        body {
-            background: var(--bg);
-            background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text);
-            overflow: hidden;
-        }
+  <!-- ===== JSON-LD SCHEMA ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Simple Calculator Online",
+    "url": "https://simple-calculator-2026.vercel.app/",
+    "applicationCategory": "CalculatorApplication",
+    "operatingSystem": "All",
+    "description": "Free online calculator to perform basic and scientific math calculations instantly.",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
-        .container {
-            position: relative;
-            z-index: 1;
-        }
+  <style>
+    :root {
+      --bg: #0f172a;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.3);
+      --text: #f8fafc;
+    }
 
-        .calculator {
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 2rem;
-            width: 380px;
-            padding: 2rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, sans-serif;
+    }
 
-        .display {
-            margin-bottom: 2rem;
-            text-align: right;
-            padding: 1rem;
-            min-height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-        }
+    body {
+      background: radial-gradient(circle at top left, #1e1b4b, #0f172a);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text);
+    }
 
-        #previous-val {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 0.5rem;
-            overflow-x: auto;
-        }
+    .calculator {
+      background: var(--glass);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      width: 380px;
+      padding: 2rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
 
-        #current-val {
-            font-size: 3rem;
-            font-weight: 600;
-            word-wrap: break-word;
-            word-break: break-all;
-        }
+    .display {
+      margin-bottom: 2rem;
+      text-align: right;
+      padding: 1rem;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
+    #previous-val {
+      font-size: 1.1rem;
+      opacity: 0.5;
+    }
 
-        button {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            border-radius: 1rem;
-            padding: 1.25rem;
-            color: white;
-            font-size: 1.25rem;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    #current-val {
+      font-size: 3rem;
+      font-weight: 600;
+      word-break: break-all;
+    }
 
-        button:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
 
-        button:active {
-            transform: scale(0.95);
-        }
+    button {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.25rem;
+      color: white;
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
 
-        .btn-sci {
-            font-size: 0.9rem;
-            color: #a78bfa;
-            font-weight: 500;
-        }
+    button:hover {
+      background: rgba(255, 255, 255, 0.1);
+      transform: translateY(-2px);
+    }
 
-        .btn-op {
-            color: #22d3ee;
-        }
+    .btn-op { color: #22d3ee; }
+    .btn-sci { font-size: 0.9rem; color: #a78bfa; }
+    .btn-ac { color: #f87171; grid-column: span 2; }
 
-        .btn-eq {
-            background: linear-gradient(135deg, #8b5cf6, #ec4899);
-            border: none;
-            grid-column: span 1;
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
+    .btn-eq {
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      border: none;
+    }
 
-        .btn-ac {
-            color: #f87171;
-            grid-column: span 2;
-        }
-
-        /* Abstract Glows */
-        .blob {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            background: var(--accent);
-            filter: blur(100px);
-            opacity: 0.2;
-            z-index: -1;
-            border-radius: 50%;
-        }
-
-        .blob-1 { top: -100px; left: -100px; }
-        .blob-2 { bottom: -100px; right: -100px; background: #3b82f6; }
-
-        @media (max-width: 400px) {
-            .calculator {
-                width: 95vw;
-                padding: 1.5rem;
-            }
-        }
-    </style>
+    @media (max-width: 420px) {
+      .calculator { width: 95vw; }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
 
-    <div class="container">
-        <div class="calculator">
-            <div class="display">
-                <div id="previous-val"></div>
-                <div id="current-val">0</div>
-            </div>
-            <div class="grid">
-                <button class="btn-ac" onclick="clearDisplay()">AC</button>
-                <button class="btn-op" onclick="deleteLast()">DEL</button>
-                <button class="btn-op" onclick="appendOperator('/')">÷</button>
-                
-                <button class="btn-sci" onclick="appendFunc('Math.sin')">sin</button>
-                <button class="btn-sci" onclick="appendFunc('Math.cos')">cos</button>
-                <button class="btn-sci" onclick="appendFunc('Math.tan')">tan</button>
-                <button class="btn-op" onclick="appendOperator('*')">×</button>
+<!-- SEO Content (Hidden, Google-readable) -->
+<header style="position:absolute; left:-9999px;">
+  <h1>Simple Calculator Online</h1>
+  <p>
+    Simple Calculator Online is a free math calculator that helps you perform
+    addition, subtraction, multiplication, division, square root, sine,
+    cosine, and tangent calculations instantly.
+  </p>
+</header>
 
-                <button onclick="appendNumber('7')">7</button>
-                <button onclick="appendNumber('8')">8</button>
-                <button onclick="appendNumber('9')">9</button>
-                <button class="btn-op" onclick="appendOperator('-')">-</button>
+<div class="calculator">
+  <div class="display">
+    <div id="previous-val"></div>
+    <div id="current-val">0</div>
+  </div>
 
-                <button onclick="appendNumber('4')">4</button>
-                <button onclick="appendNumber('5')">5</button>
-                <button onclick="appendNumber('6')">6</button>
-                <button class="btn-op" onclick="appendOperator('+')">+</button>
+  <div class="grid">
+    <button class="btn-ac" onclick="clearDisplay()">AC</button>
+    <button class="btn-op" onclick="deleteLast()">DEL</button>
+    <button class="btn-op" onclick="appendOperator('/')">÷</button>
 
-                <button onclick="appendNumber('1')">1</button>
-                <button onclick="appendNumber('2')">2</button>
-                <button onclick="appendNumber('3')">3</button>
-                <button class="btn-eq" onclick="calculate()">=</button>
+    <button class="btn-sci" onclick="appendFunc('Math.sin')">sin</button>
+    <button class="btn-sci" onclick="appendFunc('Math.cos')">cos</button>
+    <button class="btn-sci" onclick="appendFunc('Math.tan')">tan</button>
+    <button class="btn-op" onclick="appendOperator('*')">×</button>
 
-                <button style="grid-column: span 2" onclick="appendNumber('0')">0</button>
-                <button onclick="appendNumber('.')">.</button>
-                <button class="btn-sci" onclick="appendFunc('Math.sqrt')">√</button>
-            </div>
-        </div>
-    </div>
+    <button onclick="appendNumber('7')">7</button>
+    <button onclick="appendNumber('8')">8</button>
+    <button onclick="appendNumber('9')">9</button>
+    <button class="btn-op" onclick="appendOperator('-')">-</button>
 
-    <script>
-        let currentInput = '';
-        let displayInput = '';
-        const currentValElem = document.getElementById('current-val');
-        const prevValElem = document.getElementById('previous-val');
+    <button onclick="appendNumber('4')">4</button>
+    <button onclick="appendNumber('5')">5</button>
+    <button onclick="appendNumber('6')">6</button>
+    <button class="btn-op" onclick="appendOperator('+')">+</button>
 
-        function updateDisplay() {
-            currentValElem.innerText = displayInput || '0';
-        }
+    <button onclick="appendNumber('1')">1</button>
+    <button onclick="appendNumber('2')">2</button>
+    <button onclick="appendNumber('3')">3</button>
+    <button class="btn-eq" onclick="calculate()">=</button>
 
-        function appendNumber(num) {
-            if (num === '.' && displayInput.includes('.')) return;
-            displayInput += num;
-            currentInput += num;
-            updateDisplay();
-        }
+    <button style="grid-column: span 2" onclick="appendNumber('0')">0</button>
+    <button onclick="appendNumber('.')">.</button>
+    <button class="btn-sci" onclick="appendFunc('Math.sqrt')">√</button>
+  </div>
+</div>
 
-        function appendOperator(op) {
-            if (displayInput === '') return;
-            const visualOp = op === '*' ? '×' : op === '/' ? '÷' : op;
-            displayInput += ' ' + visualOp + ' ';
-            currentInput += op;
-            updateDisplay();
-        }
+<script>
+  let currentInput = '';
+  let displayInput = '';
 
-        function appendFunc(func) {
-            displayInput += func.replace('Math.', '') + '(';
-            currentInput += func + '(';
-            updateDisplay();
-        }
+  const currentVal = document.getElementById('current-val');
+  const prevVal = document.getElementById('previous-val');
 
-        function clearDisplay() {
-            currentInput = '';
-            displayInput = '';
-            prevValElem.innerText = '';
-            updateDisplay();
-        }
+  function updateDisplay() {
+    currentVal.innerText = displayInput || '0';
+  }
 
-        function deleteLast() {
-            displayInput = displayInput.slice(0, -1);
-            currentInput = currentInput.slice(0, -1);
-            updateDisplay();
-        }
+  function appendNumber(num) {
+    if (num === '.' && displayInput.includes('.')) return;
+    displayInput += num;
+    currentInput += num;
+    updateDisplay();
+  }
 
-        function calculate() {
-            try {
-                // Auto-close parentheses
-                let openParens = (currentInput.match(/\(/g) || []).length;
-                let closeParens = (currentInput.match(/\)/g) || []).length;
-                while (openParens > closeParens) {
-                    currentInput += ')';
-                    displayInput += ')';
-                    closeParens++;
-                }
+  function appendOperator(op) {
+    if (!displayInput) return;
+    displayInput += ' ' + (op === '*' ? '×' : op === '/' ? '÷' : op) + ' ';
+    currentInput += op;
+    updateDisplay();
+  }
 
-                const result = eval(currentInput);
-                prevValElem.innerText = displayInput + ' =';
-                displayInput = result.toString();
-                currentInput = result.toString();
-                updateDisplay();
-            } catch (e) {
-                currentValElem.innerText = 'Error';
-                setTimeout(clearDisplay, 1500);
-            }
-        }
-    </script>
+  function appendFunc(func) {
+    displayInput += func.replace('Math.', '') + '(';
+    currentInput += func + '(';
+    updateDisplay();
+  }
+
+  function clearDisplay() {
+    currentInput = '';
+    displayInput = '';
+    prevVal.innerText = '';
+    updateDisplay();
+  }
+
+  function deleteLast() {
+    displayInput = displayInput.slice(0, -1);
+    currentInput = currentInput.slice(0, -1);
+    updateDisplay();
+  }
+
+  function calculate() {
+    try {
+      let open = (currentInput.match(/\(/g) || []).length;
+      let close = (currentInput.match(/\)/g) || []).length;
+      while (open > close) {
+        currentInput += ')';
+        displayInput += ')';
+        close++;
+      }
+
+      const result = eval(currentInput);
+      prevVal.innerText = displayInput + ' =';
+      displayInput = result.toString();
+      currentInput = result.toString();
+      updateDisplay();
+    } catch {
+      currentVal.innerText = 'Error';
+      setTimeout(clearDisplay, 1500);
+    }
+  }
+</script>
+
 </body>
 </html>
