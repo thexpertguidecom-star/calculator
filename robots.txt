@@ -1,2 +1,3 @@
 User-agent: *
 Allow: /
+Sitemap: https://simple-calculator-2026.vercel.app/sitemap.xml
